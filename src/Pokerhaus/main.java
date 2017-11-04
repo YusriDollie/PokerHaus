@@ -39,9 +39,9 @@ public class main {
         }
 
         System.out.println("Fullhouse?\n" +  Utility.fullhouse(hand));
-
-
-
+        System.out.println("Sequential?\n" +  Utility.isSequential(hand));
+        System.out.println("Flush?\n" +  Utility.suitMatch(hand));
+        System.out.println("Largest match:\n"+ Utility.matching(hand));
 
 
 

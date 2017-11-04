@@ -2,6 +2,8 @@ package Pokerhaus;
 
 public final class Utility {
 
+
+
     public enum Hands {
 
         High_Card, One_Pair, Two_Pair,Three_of_a_Kind, Four_of_a_Kind, Straight, Flush, Full_House, Straight_Flush, Five_of_a_Kind ;
@@ -63,7 +65,7 @@ public final class Utility {
         boolean seq = true;
         for(int i =1 ; i<5;i++){
 
-            if ((hand[i].getValue())!=(hand[i-1].getValue() +1)){
+            if ((hand[i].getValue())!=(hand[i-1].getValue() -1)){
 
                 seq = false;
                 return seq;
@@ -96,9 +98,42 @@ public final class Utility {
             // is it a full house?
             if (total == 3 && total2 == 2) return true;
             if (total == 2 && total2 == 3) return true;
+
+
+
             // no full house
             return false;
         }
+
+
+    public static int matching (Card [] hand){
+
+        int initial = hand[0].getValue();
+        int total = 1;
+        int initial2 = hand[4].getValue();
+        int total2 = 0;
+
+        for (int i = 0; i < 4; i++) {
+            if (hand[i+1].getValue() == initial){
+                total++;
+            }
+
+            else{
+                initial=hand[i].getValue();
+            }
+
+            if (hand[4-i].getValue() == initial2){
+                total2++;
+            }
+            else{
+                initial2=hand[4-i].getValue();
+            }
+        }
+
+        System.out.println("Forward:"+total +"\n Back:"+ total2);
+         return Math.max(total,total2);
+    }
+
 
     }
 
