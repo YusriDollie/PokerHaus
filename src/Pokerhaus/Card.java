@@ -1,7 +1,8 @@
 package Pokerhaus;
 
+import java.util.Comparator;
 import java.util.regex.Pattern;
-public class Card {
+public class Card implements Comparator <Card>  {
 
     private int value;
     private String suite;
@@ -46,6 +47,16 @@ public class Card {
 
     }
 
+    public  String getSuite (){
+
+        return  suite;
+    }
+
+    public int getValue (){
+
+        return value;
+    }
+
     public String toString(){
 
         return "Face Value: "+value+ " Suite: "+ suite;
@@ -53,7 +64,16 @@ public class Card {
     }
 
 
+    @Override
+    public int compare(Card o1, Card o2) {
+        if(o1.value>o2.value){
+            return 1;
+        }
 
+        else if (o1.value<o2.value){
+            return  -1;
+        }
 
-
+        else return 0;
+    }
 }
