@@ -34,15 +34,8 @@ public class main {
     //Sort hand to rank and allow for quick comparisons
     Arrays.sort(hand,Card.cardComparator);
 
-        for (Card c : hand){
-            System.out.println(c.toString());
-        }
-
-        System.out.println("Fullhouse?\n" +  Utility.fullhouse(hand));
-        System.out.println("Sequential?\n" +  Utility.isSequential(hand));
-        System.out.println("Flush?\n" +  Utility.suitMatch(hand));
-        System.out.println("Largest match:\n"+ Utility.matching(hand));
-
+    //Evaluate
+    System.out.println(Utility.evaluateHand(hand));
 
 
     }

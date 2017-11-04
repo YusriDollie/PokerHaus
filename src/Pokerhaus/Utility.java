@@ -72,12 +72,13 @@ public final class Utility {
         }
 
 
-    public static int matching (Card [] hand){
+    public static int [] matching (Card [] hand){
 
         int initial = hand[0].getValue();
         int total = 0;
         int max1 =0;
         int pairs = 0;
+        int [] out = new int [2];
 
         for (int i = 0; i < 5; i++) {
             if (hand[i].getValue() == initial){
@@ -101,81 +102,93 @@ public final class Utility {
             }
 
 
-
-
-
         }
-        System.out.println("PAIRS: "+pairs);
-         return max1;
+        out[0]=max1;
+        out[1]= pairs;
+        //System.out.println("PAIRS: "+pairs);
+         return out;
     }
 
 
-//    public static String evaluateHand(Card [] hand){
-//
-//        //Test in Descending Order and eliminate as many as possible as quickly as possible
-//        int largestMatch = matching(hand);
-//
-//        if(largestMatch==5){
-//
-//            return "Five of a Kind";
-//
-//        }
-//
-//        else{
-//
-//            if(isSequential(hand)){
-//
-//                if(suitMatch(hand)){
-//                    //If both sequential and all suits match
-//                    return "Straight Flush";
-//                }
-//
-//
-//                else{
-//                    //if only sequential
-//
-//
-//
-//                }
-//
-//
-//            }
-//
-//
-//            else if(largestMatch==4){
-//
-//                return "Four of a Kind";
-//            }
-//
-//
-//            else if (fullhouse(hand)){
-//
-//                return "Full-House";
-//
-//            }
-//
-//            else if(largestMatch==3){
-//
-//                return "Three of a Kind";
-//            }
-//
-//
-//            else if(largestMatch==2){
-//
-//                return "Two of a Kind";
-//            }
-//
-//
-//
-//
-//
-//
-//
-//        }
-//
-//
-//
-//    }
+    public static String evaluateHand(Card [] hand){
+
+        //Test in Descending Order and eliminate as many as possible as quickly as possible
+        //Do these operations once only as they are expensive;
+        int [] matchOut = matching(hand);
+
+        //Do once and can ignore all other cases
+        if(matchOut[0]==5){
+
+            return "Five of a Kind";
+
+        }
+
+        else{
+            //Do these operations once only as they are expensive;
+            boolean seq = isSequential(hand);
+            boolean matching = suitMatch(hand);
+
+            if(seq){
+
+                if(matching){
+                    //If both sequential and all suits match
+                    return "Straight Flush";
+                }
+
+            }
+
+            else if(matchOut[0]==4){
+
+                return "Four of a Kind";
+            }
+
+
+            else if (fullhouse(hand)){
+
+                return "Full-House";
+
+            }
+
+            else if (matching){
+
+                return "Flush";
+
+            }
+
+            else if (seq){
+
+                return "Staight";
+
+            }
+
+            else if(matchOut[0]==3){
+
+                return "Three of a Kind";
+            }
+
+
+            else if(matchOut[0]==2){
+
+                if(matchOut[1]==2){
+                    return "Two Pair";
+
+                }
+
+                else {
+                    return "One Pair";
+                }
+            }
+
+            else{
+
+                return "High Card";
+            }
+
+
+        }
+
+        return "Error";
+    }
 
 
     }
