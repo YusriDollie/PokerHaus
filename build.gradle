@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
+
 // This points to the main class
 
 mainClassName = 'Pokerhaus.main'
@@ -22,10 +23,19 @@ sourceSets {
             srcDir 'src'
         }
     }
+
+    test {
+        resources{
+            srcDir 'test'
+        }
+    }
+
 }
 
 repositories {
     mavenCentral()
+    maven { url 'http://repo1.maven.org/maven2' }
+    jcenter()
 }
 
 jar {
@@ -44,6 +54,12 @@ jar {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    compile 'org.slf4j:slf4j-api:1.7.7'
 
+    // JUnit and Mockito
+    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:1.+"
+
+    compile 'junit:junit:4.12'
 }

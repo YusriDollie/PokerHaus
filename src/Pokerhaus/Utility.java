@@ -128,12 +128,10 @@ public final class Utility {
             boolean seq = isSequential(hand);
             boolean matching = suitMatch(hand);
 
-            if(seq){
+            if(seq && matching){
 
-                if(matching){
-                    //If both sequential and all suits match
                     return "Straight Flush";
-                }
+
 
             }
 
@@ -187,7 +185,6 @@ public final class Utility {
 
         }
 
-        return "Error";
     }
 
 
