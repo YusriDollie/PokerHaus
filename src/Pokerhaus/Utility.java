@@ -4,40 +4,6 @@ public final class Utility {
 
 
 
-    public enum Hands {
-
-        High_Card, One_Pair, Two_Pair,Three_of_a_Kind, Four_of_a_Kind, Straight, Flush, Full_House, Straight_Flush, Five_of_a_Kind ;
-
-        int rank() {
-            switch (this) {
-
-                case High_Card:
-                    return 1;
-                case One_Pair:
-                    return 2;
-                case Two_Pair:
-                    return 3;
-                case Three_of_a_Kind:
-                    return 4;
-                case Straight:
-                    return 5;
-                case Flush:
-                    return 6;
-                case Full_House:
-                    return 7;
-                case Four_of_a_Kind:
-                    return 8;
-                case Straight_Flush:
-                    return 9;
-                case Five_of_a_Kind:
-                    return 10;
-                default:
-                    return 0;
-            }
-
-        }
-    }
-
         public static boolean isNumeric(String s) {
         return java.util.regex.Pattern.matches("\\d+", s);
     }
@@ -109,30 +75,107 @@ public final class Utility {
     public static int matching (Card [] hand){
 
         int initial = hand[0].getValue();
-        int total = 1;
-        int initial2 = hand[4].getValue();
-        int total2 = 0;
+        int total = 0;
+        int max1 =0;
+        int pairs = 0;
 
-        for (int i = 0; i < 4; i++) {
-            if (hand[i+1].getValue() == initial){
+        for (int i = 0; i < 5; i++) {
+            if (hand[i].getValue() == initial){
                 total++;
             }
-
             else{
                 initial=hand[i].getValue();
+                if(max1<total) {
+                    max1 = total;
+                }
+
+                total=1;
             }
 
-            if (hand[4-i].getValue() == initial2){
-                total2++;
+            if(max1<total){
+                max1=total;
             }
-            else{
-                initial2=hand[4-i].getValue();
+
+            if(max1 == total && max1 ==2){
+                pairs++;
             }
+
+
+
+
+
         }
-
-        System.out.println("Forward:"+total +"\n Back:"+ total2);
-         return Math.max(total,total2);
+        System.out.println("PAIRS: "+pairs);
+         return max1;
     }
+
+
+//    public static String evaluateHand(Card [] hand){
+//
+//        //Test in Descending Order and eliminate as many as possible as quickly as possible
+//        int largestMatch = matching(hand);
+//
+//        if(largestMatch==5){
+//
+//            return "Five of a Kind";
+//
+//        }
+//
+//        else{
+//
+//            if(isSequential(hand)){
+//
+//                if(suitMatch(hand)){
+//                    //If both sequential and all suits match
+//                    return "Straight Flush";
+//                }
+//
+//
+//                else{
+//                    //if only sequential
+//
+//
+//
+//                }
+//
+//
+//            }
+//
+//
+//            else if(largestMatch==4){
+//
+//                return "Four of a Kind";
+//            }
+//
+//
+//            else if (fullhouse(hand)){
+//
+//                return "Full-House";
+//
+//            }
+//
+//            else if(largestMatch==3){
+//
+//                return "Three of a Kind";
+//            }
+//
+//
+//            else if(largestMatch==2){
+//
+//                return "Two of a Kind";
+//            }
+//
+//
+//
+//
+//
+//
+//
+//        }
+//
+//
+//
+//    }
 
 
     }
