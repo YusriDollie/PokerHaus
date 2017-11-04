@@ -3,7 +3,7 @@ apply plugin: 'application'
 
 // This points to the main class
 
-mainClassName = 'main'
+mainClassName = 'Pokerhaus.main'
 
 
 run {
