@@ -2,7 +2,7 @@ package Pokerhaus;
 
 import java.util.Comparator;
 import java.util.regex.Pattern;
-public class Card implements Comparator <Card>  {
+public class Card {
 
     private int value;
     private String suite;
@@ -63,17 +63,16 @@ public class Card implements Comparator <Card>  {
 
     }
 
+    public static Comparator<Card> cardComparator
+            = new Comparator<Card>() {
 
-    @Override
-    public int compare(Card o1, Card o2) {
-        if(o1.value>o2.value){
-            return 1;
+        public int compare(Card o1, Card o2) {
+            if (o1.value < o2.value) {
+                return 1;
+            } else if (o1.value > o2.value) {
+                return -1;
+            } else return 0;
         }
 
-        else if (o1.value<o2.value){
-            return  -1;
-        }
-
-        else return 0;
-    }
+    };
 }
