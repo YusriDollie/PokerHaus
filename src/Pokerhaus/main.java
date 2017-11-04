@@ -33,9 +33,7 @@ public class main {
 
     //Sort hand to rank and allow for quick comparisons
     Arrays.sort(hand, Card.cardComparator);
-        for(Card c : hand){
-            System.out.println(c.toString());
-        }
+
     //Evaluate
     System.out.println(Utility.evaluateHand(hand));
 

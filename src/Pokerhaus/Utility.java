@@ -155,7 +155,7 @@ public final class Utility {
 
             else if (seq){
 
-                return "Staight";
+                return "Straight";
 
             }
 
