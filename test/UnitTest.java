@@ -283,8 +283,64 @@ public class UnitTest {
         assertFalse(Utility.suitMatch(tHand3));
         assertFalse(Utility.isSequential(tHand3));
 
+    }
+
+
+    @Test
+    public void quadTesting () {
+
+        String qTest = "3c 3s KS 3h 3d";
+        String [] rawCards = qTest.split(" ");
+        Card [] qHand = new Card[5];
+        for(int x = 0 ; x<5 ;x++){
+            //Constructing hand of cards
+            int subIndex = rawCards[x].length();
+            Card temp = new Card(rawCards[x].substring(0,subIndex-1),rawCards[x].substring(subIndex-1));
+            qHand[x]=temp;
+
+        }
+
+        Arrays.sort(qHand,Card.cardComparator);
+        assertEquals("Four of a Kind", Utility.evaluateHand(qHand));
+        assertFalse(Utility.suitMatch(qHand));
+        assertFalse(Utility.isSequential(qHand));
+
+
+        String qTest2 = "Qc Qh KS Qs Qd";
+        String [] rawCards2 = qTest2.split(" ");
+        Card [] qHand2 = new Card[5];
+        for(int x = 0 ; x<5 ;x++){
+            //Constructing hand of cards
+            int subIndex = rawCards2[x].length();
+            Card temp = new Card(rawCards2[x].substring(0,subIndex-1),rawCards2[x].substring(subIndex-1));
+            qHand2[x]=temp;
+
+        }
+
+        Arrays.sort(qHand2,Card.cardComparator);
+        assertEquals("Four of a Kind", Utility.evaluateHand(qHand2));
+        assertFalse(Utility.suitMatch(qHand2));
+        assertFalse(Utility.isSequential(qHand2));
+
+
+        String qTest3 = "Qc Ks KS Qs Qd";
+        String [] rawCards3 = qTest3.split(" ");
+        Card [] qHand3 = new Card[5];
+        for(int x = 0 ; x<5 ;x++){
+            //Constructing hand of cards
+            int subIndex = rawCards2[x].length();
+            Card temp = new Card(rawCards3[x].substring(0,subIndex-1),rawCards3[x].substring(subIndex-1));
+            qHand3[x]=temp;
+
+        }
+
+        Arrays.sort(qHand3,Card.cardComparator);
+        assertFalse(Utility.evaluateHand(qHand3).equals("Four of a Kind"));
+        assertFalse(Utility.suitMatch(qHand3));
+        assertFalse(Utility.isSequential(qHand3));
 
     }
+
 
 
 }
